@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import UserTemplate from "./template/userTemplate";
-import Home from "./pages/Home/home";
+import UserTemplate from "./Template/UserTemplate";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (
