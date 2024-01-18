@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { getByIdPageDetail } from "./../../services/detail";
+import { useLocation } from "react-router-dom";
 
 const RelateProduct = () => {
   const [productRelate, setProductRelate] = useState([]);
+  const location = useLocation();
+  const id = location.pathname.replace(/\//g, "");
+  console.log(id);
 
   useEffect(() => {
     getByIdPageDetail
-      .getById()
+      .getById(id)
       .then((res) => {
         console.log(res);
         setProductRelate(res.data.content.relatedProducts);

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { getByIdPageDetail } from "./../../services/detail";
+import { useLocation } from "react-router-dom";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState([]);
   let [quanlity, setQuanlity] = useState(1);
+  const location = useLocation();
+  const id = location.pathname.replace(/\//g, "");
+  console.log(id);
 
   useEffect(() => {
     console.log("first");
     getByIdPageDetail
-      .getById()
+      .getById(id)
       .then((res) => {
         console.log(res);
         setProduct(res.data.content);

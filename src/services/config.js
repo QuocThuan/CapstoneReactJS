@@ -5,12 +5,13 @@ import axios from "axios";
 
 export const https = axios.create({
 
+
   baseURL: "https://shop.cyberlearn.vn",
   // headers: {
   //   TokenCybersoft,
   //   Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('userLogin'))?.accessToken,
 
   // },
-  // timeout: 1000,
+  // timeout: 10000,
 });
 

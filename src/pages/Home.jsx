@@ -25,14 +25,14 @@ const Home = () => {
             <div className="col-md-4 mt-2" key={prod.id}>
               <NavLink
                 style={{ textDecoration: "none" }}
-                to={`/detail/${prod.id}`}
+                to={`/${prod.id}`}
                 className="card"
               >
                 <img src={prod.image} alt="..." />
                 <div className="card-body">
                   <h5>{prod.name}</h5>
 
-                  <NavLink className="btn btn-dark" to={`/detail/${prod.id}`}>
+                  <NavLink className="btn btn-dark" to={`/${prod.id}`}>
                     Buy now
                   </NavLink>
                   <NavLink className="btn btn-primary mx-3">
