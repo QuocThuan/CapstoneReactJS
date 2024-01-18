@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getByIdPageDetail } from "./../../services/detail";
+import React, { useEffect, useState } from 'react';
+import { getByIdPageDetail } from "./../../util/detail";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState([]);
