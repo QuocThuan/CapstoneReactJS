@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
   return (
     <div>
-      <ProductCarousel />
+      {/* <ProductCarousel /> */}
       <div className="container">
         <h3>Home</h3>
         <div className="row">
