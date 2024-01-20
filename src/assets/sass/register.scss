@@ -1,0 +1,126 @@
+@import 'index.scss';
+.page-register{
+    
+    .row{
+        //background-color: #aeaeae;
+        margin: auto;
+        width: 80%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #fbfbfb;
+        color: black;
+        .col-4{
+            
+        }
+        .col-8{
+            width: 60%;
+            margin: auto;
+            .form-register{
+                h3{
+                    font-size: 35px;
+                    padding-bottom: 20px;
+                }
+                .form-content{
+                    display: flex;
+                    justify-content: space-between;
+                    
+                    .form-left{
+                        p{
+                            margin-bottom: 5px;
+
+                        }
+                        .form-group{
+                            width: 320px;
+                            input{
+                                margin-bottom: 10px;
+                                border: none;
+                                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+                                border-radius: 4px;
+                                height: 45px;
+                                background: #fff;
+                                font-size: 15px;
+                                margin-bottom: 8px;
+                            }
+                        }
+                        .password-eye{
+                            position: relative;
+                            #password{
+                               
+                            }
+                            .eye-icon{
+                                position: absolute;
+                                top: 75%;
+                                right: 10px;
+                                transform: translateY(-50%);
+                                cursor: pointer;
+                            }
+                        }
+
+                    }
+                    .form-right{
+                        p{
+                            margin-bottom: 8px;
+ 
+                        }
+                        .form-group{
+                            width: 320px;
+                            input{
+                                margin-bottom: 10px;
+                                border: none;
+                                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+                                border-radius: 4px;
+                                height: 45px;
+                                background: #fff;
+                                font-size: 15px;
+                                margin-bottom: 8px;
+
+                            }
+                            //margin-left: 50px;
+                        }
+                        .gender{
+                            margin-top: 35px;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            .check-input-gender{
+                                box-shadow: none;
+                                width: 25px;
+                                font-size: 16px;
+                                margin-bottom: 0;
+                                // &:checked{
+                                //     background-color: black;
+                                // }
+                            }
+                        }
+
+                    }
+                }
+                .sub-res button{
+                        color: white;
+                        border-radius: 4px;
+                        height: 54px;
+                        background: #9fa6b2;
+                        font-size: 16px;
+                        
+                        &:hover{
+                            background: #fff;
+                            color: black;
+                            transition: all 0.5s;
+                            border-color: #9fa6b2;  
+                    }
+                }
+                .login-account{
+                    color: #9fa6b2;
+                    padding-top: 20px;
+                    a{
+                        color: red;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
