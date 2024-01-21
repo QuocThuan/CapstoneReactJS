@@ -1,8 +1,62 @@
 import React, { useState } from "react";
 import "../assets/sass/register.scss";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { registerApiAction } from "../redux/Reducers/UserReducers";
 
 const Register = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const hanleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const dispatch = useDispatch();
+
+  const frmRegister = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      "password-confirm": "",
+      name: "",
+      phone: "",
+      gender: true,
+    },
+    validationSchema: yup.object().shape({
+      email: yup
+        .string()
+        .required("Email không được bỏ trống")
+        .email("Email không đúng định dạng"),
+      password: yup
+        .string()
+        .required("Mật khẩu không được bỏ trống")
+        .min(8, "Mật khẩu phải tối thiểu 8 kí tự")
+        .matches(
+          /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])(?=.*[0-9]).{8,}$/,
+          "Mật khẩu tối thiểu 8 ký tự có ít nhất 1 kí tự đặc biệt, 1 chữ hoa và 1 số"
+        ),
+      "password-confirm": yup
+        .string()
+        .required("Xác nhận mật khẩu không được bỏ trống")
+        .oneOf([yup.ref("password"), null], "Mật khẩu không trùng khớp"),
+      name: yup
+        .string()
+        .required("Tên không được bỏ trống")
+        .matches(
+          /^[a-zA-Zàáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệđìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵ\s]+$/u,
+          "Tên cần đúng định dạng"
+        ),
+      phone: yup
+        .string()
+        .required("Số điện thoại không được bỏ trống")
+        .matches(/^0\d{9}$/, "Số điện thoại phải có 10 số và bắt đầu bằng 0"),
+    }),
+    onSubmit: (userRegister) => {
+      const action = registerApiAction(userRegister);
+      dispatch(action);
+    },
+  });
   return (
     <div className="page-register">
       <div className="row my-5">
@@ -14,7 +68,7 @@ const Register = () => {
           />
         </div>
         <div className="col-8">
-          <form className="form-register">
+          <form className="form-register" onSubmit={frmRegister.handleSubmit}>
             <h3 className="text-center">Register</h3>
             <div className="form-content pb-3">
               <div className="form-left">
@@ -25,30 +79,52 @@ const Register = () => {
                     id="email"
                     name="email"
                     placeholder="your-email@gmail.com"
-                    //onChange={frmLogin.handleChange}
+                    onChange={frmRegister.handleChange}
                   />
                 </div>
+                <p className="text text-danger">
+                  {frmRegister.errors.email && frmRegister.errors.email}
+                </p>
                 <div className="form-group password-eye">
                   <p>Password</p>
                   <input
+                    type={showPassword ? "text" : "password"}
                     className="form-control"
                     id="password"
                     name="password"
                     placeholder="Your Password"
-                    //onChange={frmLogin.handleChange}
+                    onChange={frmRegister.handleChange}
                   />
-                  <span class="fa fa-eye eye-icon"></span>
+                  <span
+                    type="button"
+                    class="eye-icon"
+                    onClick={hanleShowPassword}
+                  >
+                    {showPassword ? (
+                      <i class="fa fa-eye-slash"></i>
+                    ) : (
+                      <i class="fa fa-eye"></i>
+                    )}
+                  </span>
                 </div>
+                <p className="text text-danger">
+                  {frmRegister.errors.password && frmRegister.errors.password}
+                </p>
                 <div className="form-group">
                   <p>Password Confirm</p>
                   <input
+                    type="password"
                     className="form-control"
                     id="password-confirm"
                     name="password-confirm"
                     placeholder="Your Password Confirm"
-                    //onChange={frmLogin.handleChange}
+                    onChange={frmRegister.handleChange}
                   />
                 </div>
+                <p className="text text-danger">
+                  {frmRegister.errors["password-confirm"] &&
+                    frmRegister.errors["password-confirm"]}
+                </p>
               </div>
               <div className="form-right">
                 <div className="form-group">
@@ -58,41 +134,52 @@ const Register = () => {
                     id="name"
                     name="name"
                     placeholder="Your Name"
-                    //onChange={frmLogin.handleChange}
+                    onChange={frmRegister.handleChange}
                   />
                 </div>
+                <p className="text text-danger">
+                  {frmRegister.errors.name && frmRegister.errors.name}
+                </p>
                 <div className="form-group">
                   <p>Phone</p>
                   <input
                     className="form-control"
-                    type="number"
                     id="phone"
                     name="phone"
                     placeholder="Your Number"
-                    //onChange={frmLogin.handleChange}
+                    onChange={frmRegister.handleChange}
                   />
                 </div>
-                <div className="form-group gender">
+                <p className="text text-danger">
+                  {frmRegister.errors.phone && frmRegister.errors.phone}
+                </p>
+
+                <div
+                  className="form-group gender"
+                  name="gender"
+                  id="gender"
+                  onChange={frmRegister.handleChange}
+                >
                   Gender
                   <input
                     className="check-input-gender"
                     type="radio"
-                    name="radioGender"
-                    value="male"
+                    name="gender"
+                    value={true}
                     id="male"
-                    checked
+                    defaultChecked
                   />
-                  <label className="check-input-label" for="radioGender">
+                  <label className="check-input-label" for="gender">
                     Male
                   </label>
                   <input
                     className="check-input-gender"
                     type="radio"
-                    name="radioGender"
-                    value="female"
+                    name="gender"
+                    value={false}
                     id="female"
                   />
-                  <label className="check-input-label" for="radioGender">
+                  <label className="check-input-label" for="gender">
                     Female
                   </label>
                 </div>

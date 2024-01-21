@@ -1,18 +1,16 @@
-import React, { useEffect, useState, useDispatch, useSelector } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import ProductCarousel from "./ProductCarousel";
+import { getAllProductApiAction } from "../redux/Reducers/UserReducers";
 
 const Home = () => {
-  const [arrProduct, setArrProduct] = useState([]);
-  console.log("arrProduct", arrProduct);
+  const { arrProduct } = useSelector((state) => state.userReducers);
+  const dispatch = useDispatch();
   const getAllProductAPI = async () => {
-    const res = await axios({
-      url: "https://shop.cyberlearn.vn/api/Product",
-      method: "GET",
-    });
-    setArrProduct(res.data.content);
+    const action = getAllProductApiAction();
+    dispatch(action);
   };
 
   useEffect(() => {
@@ -20,32 +18,57 @@ const Home = () => {
     getAllProductAPI();
   }, []);
   return (
-    <div className="container">
-      <h3>Home</h3>
-      <div className="row">
-        {arrProduct.map((prod) => {
-          return (
-            <div className="col-md-4 mt-2" key={prod.id}>
-              <NavLink
-                style={{ textDecoration: "none" }}
-                to={`/${prod.id}`}
-                className="card"
+    <div>
+      <ProductCarousel />
+      <div className="container py-5 home-product">
+        <h2 className="text-center pb-3">List Product Shoes</h2>
+        <div className="row">
+          {arrProduct?.map((prod) => {
+            return (
+              <div
+                className="col-lg-4 col-md-6 col-sm-12 product-detail"
+                key={prod.id}
               >
-                <img src={prod.image} alt="..." />
-                <div className="card-body">
-                  <h5>{prod.name}</h5>
-
-                  <NavLink className="btn btn-dark" to={`/${prod.id}`}>
-                    Buy now
-                  </NavLink>
-                  <NavLink className="btn btn-primary mx-3">
-                    {prod.price}
-                  </NavLink>
-                </div>
-              </NavLink>
-            </div>
-          );
-        })}
+                <NavLink
+                  style={{ textDecoration: "none" }}
+                  to={`/${prod.id}`}
+                  className="card"
+                >
+                  <img src={prod.image} alt="..." />
+                  <div className="card-body">
+                    <div class="item-title">
+                      <h5>{prod.name}</h5>
+                      <p class="mb-2">
+                        {prod.description.slice(0, 46) + "..."}
+                      </p>
+                    </div>
+                    <div class="item-star text-warning mb-3">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                    <div class="item-info d-flex justify-content-evenly">
+                      <NavLink
+                        className="btn btn-dark btn-buy"
+                        to={`/${prod.id}`}
+                      >
+                        Buy now
+                      </NavLink>
+                      <NavLink
+                        className="btn btn-dark  btn-price"
+                        to={`/${prod.id}`}
+                      >
+                        {prod.price}$
+                      </NavLink>
+                    </div>
+                  </div>
+                </NavLink>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
