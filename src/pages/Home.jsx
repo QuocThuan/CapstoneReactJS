@@ -20,35 +20,32 @@ const Home = () => {
     getAllProductAPI();
   }, []);
   return (
-    <div>
-      <ProductCarousel />
-      <div className="container">
-        <h3>Home</h3>
-        <div className="row">
-          {arrProduct?.map((prod) => {
-            return (
-              <div className="col-md-4 mt-2" key={prod.id}>
-                <NavLink
-                  style={{ textDecoration: "none" }}
-                  to={`/detail/${prod.id}`}
-                  className="card"
-                >
-                  <img src={prod.image} alt="..." />
-                  <div className="card-body">
-                    <h5>{prod.name}</h5>
+    <div className="container">
+      <h3>Home</h3>
+      <div className="row">
+        {arrProduct.map((prod) => {
+          return (
+            <div className="col-md-4 mt-2" key={prod.id}>
+              <NavLink
+                style={{ textDecoration: "none" }}
+                to={`/${prod.id}`}
+                className="card"
+              >
+                <img src={prod.image} alt="..." />
+                <div className="card-body">
+                  <h5>{prod.name}</h5>
 
-                    <NavLink className="btn btn-dark" to={`/detail/${prod.id}`}>
-                      Buy now
-                    </NavLink>
-                    <NavLink className="btn btn-primary mx-3">
-                      {prod.price}
-                    </NavLink>
-                  </div>
-                </NavLink>
-              </div>
-            );
-          })}
-        </div>
+                  <NavLink className="btn btn-dark" to={`/${prod.id}`}>
+                    Buy now
+                  </NavLink>
+                  <NavLink className="btn btn-primary mx-3">
+                    {prod.price}
+                  </NavLink>
+                </div>
+              </NavLink>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import { logoutApiAction } from "../../redux/Reducers/UserReducers";
 
 const Header = () => {
+  const { number } = useSelector((state) => state.CartSlice);
+
   const { userLogin } = useSelector((state) => state.userReducers);
   console.log(userLogin);
 
@@ -121,10 +123,14 @@ const Header = () => {
                 </li>
 
                 <li className="nav-item my-2">
-                  <i
-                    className="fa-solid fa-cart-shopping fa-xl"
-                    style={{ color: "#fff" }}
-                  ></i>
+                  <NavLink to={userLogin.email ? "cart" : "login"}>
+                    <i
+                      className="fa-solid fa-cart-shopping fa-xl"
+                      style={{ color: "#fff" }}
+                    >
+                      <span className="fs-4 ms-2">({number})</span>
+                    </i>
+                  </NavLink>
                 </li>
               </ul>
             </form>
