@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TOKEN, USER_LOGIN } from "../../util/config";
+import { TOKEN, USER_LOGIN } from "../../services/config";
 
 //xử lý load giá trị ban đầu cho state từ localstorage
 let userLoginDefault = {

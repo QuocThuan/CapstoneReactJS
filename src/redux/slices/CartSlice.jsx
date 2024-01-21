@@ -22,7 +22,6 @@ const CartSlice = createSlice({
         const existingProduct = state.arrProduct.find(
           (item) => item.product.id === product.id
         );
-        console.log(existingProduct);
         if (existingProduct) {
           existingProduct.numberBuy += quantity;
           state.number = state.number;
@@ -46,24 +45,22 @@ const CartSlice = createSlice({
         ];
         state.number++;
       }
-
-      //   for (let item of state.arrProduct) {
-      //     if (item.product.id === product.id) {
-      //       item.numberBuy++;
-      //     } else {
-      //       state.arrProduct = [
-      //         ...state.arrProduct,
-      //         {
-      //           product: product,
-      //           numberBuy: quantity,
-      //         },
-      //       ];
-      //     }
-      //   }
+    },
+    deleteId: (state, action) => {
+      const id = action.payload;
+      console.log(action.payload);
+      const indexDelete = state.arrProduct.findIndex(
+        (item) => item.product.id === id
+      );
+      console.log(indexDelete);
+      if (indexDelete != -1) {
+        state.arrProduct.splice(indexDelete, 1);
+        state.number--;
+      }
     },
   },
 });
 
-export const { productToCart } = CartSlice.actions;
+export const { productToCart, deleteId } = CartSlice.actions;
 
 export default CartSlice.reducer;

@@ -123,7 +123,7 @@ const Header = () => {
                 </li>
 
                 <li className="nav-item my-2">
-                  <NavLink to={"cart"}>
+                  <NavLink to={userLogin.email ? "cart" : "login"}>
                     <i
                       className="fa-solid fa-cart-shopping fa-xl"
                       style={{ color: "#fff" }}

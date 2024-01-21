@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getByIdPageDetail } from "./../../services/detail";
+import { deleteId } from "../../redux/slices/CartSlice";
 
 const Cart = () => {
   const { arrProduct } = useSelector((state) => state.CartSlice);
-  console.log(arrProduct);
+  const { userLogin } = useSelector((state) => state.userReducers);
+  const dispatch = useDispatch();
   let [quanlity, setQuanlity] = useState(1);
 
   const buttonUp = () => {
@@ -17,6 +20,23 @@ const Cart = () => {
       setQuanlity((quanlity -= 1));
     }
   };
+
+  const submitOrder = {
+    orderDetail: arrProduct.slice(1).map((item, index) => {
+      return { productId: String(item.product.id), quantity: item.numberBuy };
+    }),
+    email: userLogin.email,
+  };
+
+  const submit = (submitOrder) => {
+    getByIdPageDetail
+      .postOrder(submitOrder)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="container">
       <h2 className="mt-5">Cart</h2>
@@ -38,6 +58,7 @@ const Cart = () => {
         </thead>
         <tbody>
           {arrProduct.slice(1).map((item, index) => {
+            const total = item.product.price * item.numberBuy;
             return (
               <tr className="text-center" style={{ verticalAlign: "middle" }}>
                 <th scope="row">
@@ -71,7 +92,7 @@ const Cart = () => {
                         aria-describedby="helper-text-explanation"
                         className="border-0 text-center text-black fs-6"
                         style={{ width: "20%" }}
-                        placeholder={item.product.quanlity}
+                        placeholder={item.numberBuy}
                         required
                       />
                       <button
@@ -89,14 +110,15 @@ const Cart = () => {
                     </div>
                   </form>
                 </td>
-                <td>
-                  {item.product.price}*{item.product.quanlity}
-                </td>
+                <td>{total}</td>
                 <td>
                   <button className="py-1 px-3 bg-primary border-0 text-white">
                     Edit
                   </button>
-                  <button className="ms-3 py-1 px-3 bg-danger border-0 text-white">
+                  <button
+                    onClick={() => dispatch(deleteId(item.product.id))}
+                    className="ms-3 py-1 px-3 bg-danger border-0 text-white"
+                  >
                     Delete
                   </button>
                 </td>
@@ -106,7 +128,11 @@ const Cart = () => {
         </tbody>
       </table>
       <div className="d-flex justify-content-end">
-        <button type="button" class="btn bg-warning border-0 me-5">
+        <button
+          type="button"
+          onClick={() => submit(submitOrder)}
+          class="btn bg-warning border-0 me-5"
+        >
           Submit Order
         </button>
       </div>
