@@ -1,87 +1,48 @@
 import React from "react";
-
+import Carousel from "react-bootstrap/Carousel";
+import "../assets/sass/home.scss";
 const ProductCarousel = () => {
   return (
-    <div>
-      <div className="slideShow">
-        <div id="carouselExample" className="carousel slide">
-          <div className="carousel-inner">
-            <div className="carousel-item active row">
-              <div className="carousel-content col-6">
-                <div className="carousel-content-img w-75">
-                  <img
-                    src="https://shop.cyberlearn.vn/images/adidas-prophere.png"
-                    className="w-100"
-                    alt="..."
-                  />
-                </div>
-                <div className="carousel-content-body col-4">
-                  <h1>Product name</h1>
-                  <p>Product description ....</p>
-                  <button className="btn btn-warning">Buy Now</button>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="carousel-content container w-75">
-                <div className="carousel-content-img w-75">
-                  <img
-                    src="./assets/img/image 4.png "
-                    className="d-block w-100"
-                    alt="..."
-                  />
-                </div>
-                <div className="carousel-content-body">
-                  <h1>Product name</h1>
-                  <p>Product description ....</p>
-                  <button className="btn">Buy Now</button>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="carousel-content container w-75">
-                <div className="carousel-content-img w-75">
-                  <img
-                    src="./assets/img/image 4.png "
-                    className="d-block w-100"
-                    alt="..."
-                  />
-                </div>
-                <div className="carousel-content-body">
-                  <h1>Product name</h1>
-                  <p>Product description ....</p>
-                  <button className="btn">Buy Now</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon text-bg-dark p-2"
-              aria-hidden="true"
-            />
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon text-bg-dark"
-              aria-hidden="true"
-            />
-            <span className="visually-hidden">Next</span>
-          </button>
+    <Carousel className="carousel-product">
+      <Carousel.Item interval={1000} className="carousel-item">
+        <div className="carousel-img">
+          <img
+            src="https://shop.cyberlearn.vn/images/adidas-prophere.png"
+            alt=""
+          />
         </div>
-      </div>
-    </div>
+        <Carousel.Caption className="carousel-caption">
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={500}>
+        <div className="carousel-img">
+          <img
+            src="https://shop.cyberlearn.vn/images/adidas-prophere.png"
+            alt=""
+          />
+        </div>
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <div className="carousel-img">
+          <img
+            src="https://shop.cyberlearn.vn/images/adidas-prophere.png"
+            alt=""
+          />
+        </div>
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
   );
 };
 
