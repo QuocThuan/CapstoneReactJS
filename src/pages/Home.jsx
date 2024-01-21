@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useDispatch, useSelector } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+
+import ProductCarousel from "./ProductCarousel";
 
 const Home = () => {
   const [arrProduct, setArrProduct] = useState([]);
@@ -12,6 +14,7 @@ const Home = () => {
     });
     setArrProduct(res.data.content);
   };
+
   useEffect(() => {
     //gọi api trong useEffect didmount
     getAllProductAPI();
@@ -25,18 +28,18 @@ const Home = () => {
             <div className="col-md-4 mt-2" key={prod.id}>
               <NavLink
                 style={{ textDecoration: "none" }}
-                to={`/detail/${prod.id}`}
+                to={`/${prod.id}`}
                 className="card"
               >
                 <img src={prod.image} alt="..." />
                 <div className="card-body">
                   <h5>{prod.name}</h5>
 
-                  <NavLink className="btn btn-dark" to={`/detail/${prod.id}`}>
+                  <NavLink className="btn btn-dark" to={`/${prod.id}`}>
                     Buy now
                   </NavLink>
                   <NavLink className="btn btn-primary mx-3">
-                    {prod.price}
+                    ${prod.price}
                   </NavLink>
                 </div>
               </NavLink>
