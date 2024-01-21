@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { getByIdPageDetail } from "./../../services/detail";
 import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { productToCart } from "../../redux/slices/CartSlice";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState([]);
-  let [quanlity, setQuanlity] = useState(1);
+  const dispatch = useDispatch();
+
+  let [quantity, setQuantity] = useState(1);
   const location = useLocation();
   const id = location.pathname.replace(/\//g, "");
-  console.log(id);
 
   useEffect(() => {
     console.log("first");
@@ -32,14 +35,14 @@ const ProductDetail = () => {
   const sizeProduct = product.size;
 
   const buttonUp = () => {
-    setQuanlity((quanlity += 1));
+    setQuantity((quantity += 1));
   };
 
   const buttonDown = () => {
-    if (quanlity == 1) {
-      setQuanlity(1);
+    if (quantity == 1) {
+      setQuantity(1);
     } else {
-      setQuanlity((quanlity -= 1));
+      setQuantity((quantity -= 1));
     }
   };
 
@@ -98,7 +101,7 @@ const ProductDetail = () => {
                 aria-describedby="helper-text-explanation"
                 className="border-0 text-center text-black fs-5"
                 style={{ width: "10%", lineHeight: "35px" }}
-                placeholder={quanlity}
+                placeholder={quantity}
                 required
               />
               <button
@@ -113,7 +116,10 @@ const ProductDetail = () => {
             </div>
           </form>
 
-          <button className="bg-primary py-2 px-4 mt-3 text-white border-0">
+          <button
+            onClick={() => dispatch(productToCart({ product, quantity }))}
+            className="bg-primary py-2 px-4 mt-3 text-white border-0"
+          >
             Add To Cart
           </button>
         </div>

@@ -1,9 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
+import CartSlice from "./slices/CartSlice";
 
 export const store = configureStore({
   reducer: {
-    hoTen: () => {
-      return "Laika";
-    },
+    CartSlice,
   },
 });

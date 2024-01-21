@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Route, Routes } from "react-router-dom";
-=======
-import { Navigate, Route, Routes } from "react-router-dom";
->>>>>>> master
 import UserTemplate from "./templates/UserTemplate";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail/Detail";
