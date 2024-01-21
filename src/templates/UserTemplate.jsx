@@ -1,16 +1,16 @@
-import React from 'react'
-import Header from '../Components/Header/Header'
-import Footer from '../Components/Footer/Footer'
+import React from "react";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 import { Outlet } from "react-router-dom";
 
 const UserTemplate = () => {
   return (
     <div>
-        <Header/>
-        <Outlet/>
-        <Footer/>
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default UserTemplate
+export default UserTemplate;

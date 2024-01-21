@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useDispatch, useSelector } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+
+import ProductCarousel from "./ProductCarousel";
 
 const Home = () => {
   const [arrProduct, setArrProduct] = useState([]);
@@ -12,6 +14,7 @@ const Home = () => {
     });
     setArrProduct(res.data.content);
   };
+
   useEffect(() => {
     //gọi api trong useEffect didmount
     getAllProductAPI();

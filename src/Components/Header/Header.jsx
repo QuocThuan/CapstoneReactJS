@@ -1,9 +1,19 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { logoutApiAction } from "../../redux/Reducers/UserReducers";
 
 const Header = () => {
   const { number } = useSelector((state) => state.CartSlice);
+
+  const { userLogin } = useSelector((state) => state.userReducers);
+  console.log(userLogin);
+
+  const dispatch = useDispatch();
+  const logoutUser = (userLogin) => {
+    const action = logoutApiAction(userLogin);
+    dispatch(action);
+  };
 
   return (
     <div className="header bg-secondary">
@@ -64,7 +74,7 @@ const Header = () => {
 
               <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                 <li className="nav-item dropdown mx-2">
-                  <a
+                  <NavLink
                     className="nav-link dropdown-toggle"
                     href="#"
                     id="dropdownId"
@@ -72,23 +82,46 @@ const Header = () => {
                     aria-haspopup="true"
                     aria-expanded="false"
                   >
-                    <i
-                      className="fa-regular fa-user fa-xl"
-                      style={{ color: "#fff" }}
-                    ></i>
-                  </a>
+                    {userLogin.email !== "" ? (
+                      <NavLink className="text-light" to={"/"}>
+                        {userLogin.email}
+                      </NavLink>
+                    ) : (
+                      <NavLink className="text-light" to={"login"}>
+                        <i
+                          className="fa-regular fa-user fa-xl"
+                          style={{ color: "#fff" }}
+                        ></i>
+                      </NavLink>
+                    )}
+                  </NavLink>
                   <div className="dropdown-menu" aria-labelledby="dropdownId">
-                    <a className="dropdown-item" href="#">
-                      Login
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      Register
-                    </a>
-                    <a className="dropdown-item" href="#">
-                      My Account
-                    </a>
+                    {userLogin.email === "" ? (
+                      <>
+                        <NavLink className="dropdown-item" to={"login"}>
+                          Login
+                        </NavLink>
+                        <NavLink className="dropdown-item" to={"register"}>
+                          Register
+                        </NavLink>
+                      </>
+                    ) : (
+                      <>
+                        <NavLink className="dropdown-item" to={"profile"}>
+                          My Account
+                        </NavLink>
+                        <NavLink
+                          className="dropdown-item"
+                          to={"login"}
+                          onClick={logoutUser}
+                        >
+                          Logout
+                        </NavLink>
+                      </>
+                    )}
                   </div>
                 </li>
+
                 <li className="nav-item my-2">
                   <NavLink to={"cart"}>
                     <i
