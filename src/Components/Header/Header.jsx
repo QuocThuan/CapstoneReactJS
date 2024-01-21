@@ -1,7 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
+
 
 const Header = () => {
+
   return (
     <div className="header bg-secondary">
       <div className="container">
@@ -16,7 +18,7 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link active" to="/" aria-current="page">
+                <NavLink className="nav-link" to="/" aria-current="page">
                   Home <span className="visually-hidden">(current)</span>
                 </NavLink>
               </li>
@@ -40,16 +42,24 @@ const Header = () => {
                   </a>
                 </div>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="search" aria-current="page">
+                  Search
+                </NavLink>
+              </li>
             </ul>
-            <form className="d-flex my-2 my-lg-0">
+            <div className="d-flex my-2 my-lg-0">
+              
+              <form className="d-flex">
               <input
                 className="form-control me-sm-2"
                 type="text"
                 placeholder="Search"
               />
-              <button className="btn btn-dark my-2 my-sm-0" type="submit">
+              <NavLink to="search" className="btn btn-dark my-2 my-sm-0" type="submit">
                 Search
-              </button>
+              </NavLink>
+              </form>
 
               <ul className="navbar-nav me-auto mt-2 mt-lg-0">
               <li className="nav-item dropdown mx-2">
@@ -79,7 +89,7 @@ const Header = () => {
               <i className="fa-solid fa-cart-shopping fa-xl" style={{color: "#fff"}}></i>
               </li>
             </ul>
-            </form>
+            </div>
           </div>
         </nav>
       </div>
