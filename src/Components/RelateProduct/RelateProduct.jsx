@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { getByIdPageDetail } from "./../../util/detail";
+import { getByIdPageDetail } from "./../../services/detail";
+import { useLocation } from "react-router-dom";
 
 const RelateProduct = () => {
   const [productRelate, setProductRelate] = useState([]);
+  const location = useLocation();
+  const id = location.pathname.replace(/\//g, "");
+  console.log(id);
 
   useEffect(() => {
     getByIdPageDetail
-      .getById()
+      .getById(id)
       .then((res) => {
         console.log(res);
         setProductRelate(res.data.content.relatedProducts);
@@ -18,7 +22,7 @@ const RelateProduct = () => {
 
   console.log(productRelate);
   return (
-    <div className="container max-w-screen-xl mt-5">
+    <div className="container max-w-screen-xl my-5">
       <h2 className="fs-2 fw-medium mb-5 text-center">- Relate Product -</h2>
       <div className="mb-4">
         <div className="row">
@@ -36,7 +40,7 @@ const RelateProduct = () => {
 
                   <div class="card-body">
                     <h5 class="card-title">{item.name}</h5>
-                    <p class="card-text">{item.description}</p>
+                    <p class="card-text text-truncate">{item.description}</p>
                     <a href="#" class="btn bg-warning w-50 py-3">
                       Buy Now
                     </a>
