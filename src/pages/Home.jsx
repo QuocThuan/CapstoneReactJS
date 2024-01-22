@@ -29,6 +29,7 @@ const Home = () => {
                 className="col-lg-4 col-md-6 col-sm-12 product-detail"
                 key={prod.id}
               >
+                <i class="fa fa-heart heart-icon"></i>
                 <NavLink
                   style={{ textDecoration: "none" }}
                   to={`/${prod.id}`}

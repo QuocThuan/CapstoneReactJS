@@ -113,7 +113,6 @@ export const loginApiFacebookAction = (response) => {
     }
   };
 };
-
 export const getAllProductApiAction = () => {
   return async (dispatch) => {
     const res = await axios({
