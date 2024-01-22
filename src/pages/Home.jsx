@@ -21,16 +21,16 @@ const Home = () => {
     const action = getProductFavouriteApiAction(userLogin);
     dispatch(action);
   };
-  useEffect(() => {
-    getProductFavouriteAPI(userLogin);
-  }, [userLogin]);
+
   useEffect(() => {
     //gọi api trong useEffect didmount
     getAllProductAPI();
 
     // getProductFavouriteAPI(userLogin);
   }, []);
-
+  useEffect(() => {
+    getProductFavouriteAPI(userLogin);
+  }, [userLogin]);
   return (
     <div>
       <ProductCarousel />

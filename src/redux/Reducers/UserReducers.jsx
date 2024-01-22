@@ -179,12 +179,15 @@ export const getProductFavouriteApiAction = (userLogin) => {
       });
       console.log(res);
 
-      const action = setProductFavoriteAction(
-        res.data.content?.productsFavorite
-      );
-      dispatch(action);
+      // const action = setProductFavoriteAction(
+      //   res.data.content?.productsFavorite
+      // );
+
+      dispatch(setProductFavoriteAction(res.data.content?.productsFavorite));
     } catch (error) {
-      alert("Error fetching favorite products:");
+      if (error.response.status === 401) {
+        console.log("Đăng nhập để có danh sách sản phẩm yêu thích", error);
+      }
     }
   };
 };
