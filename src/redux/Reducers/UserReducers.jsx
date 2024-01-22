@@ -23,6 +23,7 @@ const initialState = {
   isLogin: false,
   arrProduct: [],
   userRegister: userRegisterDefault,
+  productFavourite: [],
 };
 const UserReducers = createSlice({
   name: "UserReducers",
@@ -46,6 +47,10 @@ const UserReducers = createSlice({
       state.userLogin = { email: "", accessToken: "" };
       state.isLogin = false;
     },
+    setProductFavoriteAction: (state, action) => {
+      console.log(action.payload);
+      state.productFavourite = action.payload;
+    },
   },
 });
 
@@ -55,6 +60,7 @@ export const {
   loginFacebookAction,
   setArrayProductAction,
   registerAction,
+  setProductFavoriteAction,
 } = UserReducers.actions;
 
 export default UserReducers.reducer;
@@ -158,5 +164,27 @@ export const logoutApiAction = (userLogin) => {
     localStorage.removeItem(USER_LOGIN);
     const action = logOutAction();
     dispatch(action);
+  };
+};
+
+export const getProductFavouriteApiAction = (userLogin) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios({
+        url: "https://shop.cyberlearn.vn/api/Users/getproductfavorite",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userLogin.accessToken}`,
+        },
+      });
+      console.log(res);
+
+      const action = setProductFavoriteAction(
+        res.data.content?.productsFavorite
+      );
+      dispatch(action);
+    } catch (error) {
+      alert("Error fetching favorite products:");
+    }
   };
 };

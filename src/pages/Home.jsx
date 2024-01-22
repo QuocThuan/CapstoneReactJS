@@ -3,20 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import ProductCarousel from "./ProductCarousel";
-import { getAllProductApiAction } from "../redux/Reducers/UserReducers";
+import {
+  getAllProductApiAction,
+  getProductFavouriteApiAction,
+} from "../redux/Reducers/UserReducers";
 
 const Home = () => {
-  const { arrProduct } = useSelector((state) => state.userReducers);
+  const { arrProduct, productFavourite, userLogin } = useSelector(
+    (state) => state.userReducers
+  );
   const dispatch = useDispatch();
   const getAllProductAPI = async () => {
     const action = getAllProductApiAction();
     dispatch(action);
   };
-
+  const getProductFavouriteAPI = async (userLogin) => {
+    const action = getProductFavouriteApiAction(userLogin);
+    dispatch(action);
+  };
+  useEffect(() => {
+    getProductFavouriteAPI(userLogin);
+  }, [userLogin]);
   useEffect(() => {
     //gọi api trong useEffect didmount
     getAllProductAPI();
+
+    // getProductFavouriteAPI(userLogin);
   }, []);
+
   return (
     <div>
       <ProductCarousel />
@@ -24,12 +38,25 @@ const Home = () => {
         <h2 className="text-center pb-3">List Product Shoes</h2>
         <div className="row">
           {arrProduct?.map((prod) => {
+            const isFavorite = productFavourite?.includes(prod.id);
+
+            // Thiết lập màu cho icon
+            const heartColor = isFavorite ? "#d03333" : "black";
             return (
               <div
                 className="col-lg-4 col-md-6 col-sm-12 product-detail"
                 key={prod.id}
               >
-                <i class="fa fa-heart heart-icon"></i>
+                {/* xử lý icon heart */}
+                {userLogin.email !== "" ? (
+                  <i
+                    className="fa fa-heart heart-icon"
+                    style={{ color: heartColor }}
+                  ></i>
+                ) : (
+                  ""
+                )}
+
                 <NavLink
                   style={{ textDecoration: "none" }}
                   to={`/${prod.id}`}
