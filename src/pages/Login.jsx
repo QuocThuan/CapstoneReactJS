@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
-import axios from "axios";
 import { loginApiAction } from "../redux/Reducers/UserReducers";
 import LoginFacebook from "./LoginFacebook";
 
