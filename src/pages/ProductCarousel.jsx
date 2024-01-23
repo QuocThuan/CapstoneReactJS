@@ -1,87 +1,74 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import "../assets/sass/home.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProductApiAction } from "../redux/Reducers/UserReducers";
+import { NavLink } from "react-router-dom";
 
 const ProductCarousel = () => {
+  const { arrProduct } = useSelector((state) => state.userReducers);
+  const dispatch = useDispatch();
+  const getAllProductAPI = async () => {
+    const action = getAllProductApiAction();
+    dispatch(action);
+  };
+
+  useEffect(() => {
+    //gọi api trong useEffect didmount
+    getAllProductAPI();
+  }, []);
   return (
-    <div>
-      <div className="slideShow">
-        <div id="carouselExample" className="carousel slide">
-          <div className="carousel-inner">
-            <div className="carousel-item active row">
-              <div className="carousel-content col-6">
-                <div className="carousel-content-img w-75">
-                  <img
-                    src="https://shop.cyberlearn.vn/images/adidas-prophere.png"
-                    className="w-100"
-                    alt="..."
-                  />
-                </div>
-                <div className="carousel-content-body col-4">
-                  <h1>Product name</h1>
-                  <p>Product description ....</p>
-                  <button className="btn btn-warning">Buy Now</button>
-                </div>
+    <Carousel className="product-carousel">
+      {arrProduct.map((prod) => {
+        return (
+          <Carousel.Item>
+            <div className="carousel-content">
+              <div className="image-container">
+                <img src={prod.image} alt="..." />
+              </div>
+              <div className="product-info">
+                <h3 className="fs-2 fw-bold">{prod.name}</h3>
+                <p className="fs-6">{prod.description.slice(0, 46) + "..."}</p>
+                <NavLink className="buy-button" to={`/${prod.id}`}>
+                  Buy Now
+                </NavLink>
               </div>
             </div>
-            <div className="carousel-item">
-              <div className="carousel-content container w-75">
-                <div className="carousel-content-img w-75">
-                  <img
-                    src="./assets/img/image 4.png "
-                    className="d-block w-100"
-                    alt="..."
-                  />
-                </div>
-                <div className="carousel-content-body">
-                  <h1>Product name</h1>
-                  <p>Product description ....</p>
-                  <button className="btn">Buy Now</button>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="carousel-content container w-75">
-                <div className="carousel-content-img w-75">
-                  <img
-                    src="./assets/img/image 4.png "
-                    className="d-block w-100"
-                    alt="..."
-                  />
-                </div>
-                <div className="carousel-content-body">
-                  <h1>Product name</h1>
-                  <p>Product description ....</p>
-                  <button className="btn">Buy Now</button>
-                </div>
-              </div>
-            </div>
+          </Carousel.Item>
+        );
+      })}
+
+      {/* <Carousel.Item>
+        <div className="carousel-content">
+          <div className="image-container">
+            <img
+              src="https://shop.cyberlearn.vn/images/adidas-prophere-customize.png"
+              alt="Product Image"
+            />
           </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon text-bg-dark p-2"
-              aria-hidden="true"
-            />
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon text-bg-dark"
-              aria-hidden="true"
-            />
-            <span className="visually-hidden">Next</span>
-          </button>
+          <div className="product-info">
+            <h3>Product Name</h3>
+            <p>Description of the product goes here.</p>
+            <button className="buy-button">Buy Now</button>
+          </div>
         </div>
-      </div>
-    </div>
+      </Carousel.Item>
+      <Carousel.Item>
+        <div className="carousel-content">
+          <div className="image-container">
+            <img
+              src="https://shop.cyberlearn.vn/images/adidas-prophere-black-white.png"
+              alt="Product Image"
+            />
+          </div>
+          <div className="product-info">
+            <h3>Product Name</h3>
+            <p>Description of the product goes here.</p>
+            <button className="buy-button">Buy Now</button>
+          </div>
+        </div>
+      </Carousel.Item> */}
+    </Carousel>
   );
 };
 
