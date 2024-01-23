@@ -1,7 +1,8 @@
 import React from "react";
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { logoutApiAction } from "../../redux/Reducers/UserReducers";
+
 
 const Header = () => {
   const { number } = useSelector((state) => state.CartSlice);
@@ -37,7 +38,7 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link active" to="/" aria-current="page">
+                <NavLink className="nav-link" to="/" aria-current="page">
                   Home <span className="visually-hidden">(current)</span>
                 </NavLink>
               </li>
@@ -61,6 +62,11 @@ const Header = () => {
                   </a>
                 </div>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="search" aria-current="page">
+                  Search
+                </NavLink>
+              </li>
             </ul>
             <form className="d-flex my-2 my-lg-0">
               <input
@@ -68,9 +74,9 @@ const Header = () => {
                 type="text"
                 placeholder="Search"
               />
-              <button className="btn btn-dark my-2 my-sm-0" type="submit">
+              <NavLink to="search" className="btn btn-dark my-2 my-sm-0" type="submit">
                 Search
-              </button>
+              </NavLink>
 
               <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                 <li className="nav-item dropdown mx-2">

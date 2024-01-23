@@ -28,11 +28,11 @@ const Login = () => {
       password: yup
         .string()
         .required("Mật khẩu không được bỏ trống")
-        .min(8, "Mật khẩu phải tối thiểu 8 kí tự")
-        .matches(
-          /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])(?=.*[0-9]).{8,}$/,
-          "Mật khẩu tối thiểu 8 ký tự có ít nhất 1 kí tự đặc biệt, 1 chữ hoa và 1 số"
-        ),
+        .min(1, "Mật khẩu phải tối thiểu 8 kí tự")
+        // .matches(
+        //   /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])(?=.*[0-9]).{8,}$/,
+        //   "Mật khẩu tối thiểu 8 ký tự có ít nhất 1 kí tự đặc biệt, 1 chữ hoa và 1 số"
+        // ),
     }),
     onSubmit: async (userLogin) => {
       const action = loginApiAction(userLogin);
