@@ -29,6 +29,7 @@ const Cart = () => {
   };
 
   const submit = (submitOrder) => {
+    alert("Bạn đã order thành công ");
     getByIdPageDetail
       .postOrder(submitOrder)
       .then((res) => {
