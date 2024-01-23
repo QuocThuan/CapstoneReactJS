@@ -29,13 +29,15 @@ const Cart = () => {
   };
 
   const submit = (submitOrder) => {
-    alert("Bạn đã order thành công ");
     getByIdPageDetail
       .postOrder(submitOrder)
       .then((res) => {
         console.log(res);
+        alert("Thành công");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
