@@ -48,7 +48,7 @@ const CartSlice = createSlice({
     },
     deleteId: (state, action) => {
       const id = action.payload;
-      console.log(action.payload);
+      // console.log(action.payload);
       const indexDelete = state.arrProduct.findIndex(
         (item) => item.product.id === id
       );
@@ -58,9 +58,32 @@ const CartSlice = createSlice({
         state.number--;
       }
     },
+    upNumber: (state, action) => {
+      const id = action.payload;
+
+      const indexDelete = state.arrProduct.findIndex(
+        (item) => item.product.id === id
+      );
+      console.log(indexDelete);
+      if (indexDelete != -1) {
+        state.arrProduct[indexDelete].numberBuy++;
+      }
+    },
+    downNumber: (state, action) => {
+      const id = action.payload;
+
+      const indexDelete = state.arrProduct.findIndex(
+        (item) => item.product.id === id
+      );
+      console.log(indexDelete);
+      if (indexDelete != -1) {
+        state.arrProduct[indexDelete].numberBuy--;
+      }
+    },
   },
 });
 
-export const { productToCart, deleteId } = CartSlice.actions;
+export const { productToCart, deleteId, upNumber, downNumber } =
+  CartSlice.actions;
 
 export default CartSlice.reducer;

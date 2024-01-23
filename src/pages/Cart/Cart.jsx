@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getByIdPageDetail } from "./../../services/detail";
-import { deleteId } from "../../redux/slices/CartSlice";
+import { deleteId, upNumber, downNumber } from "../../redux/slices/CartSlice";
 import { message } from "antd";
 
 const Cart = () => {
@@ -9,19 +9,6 @@ const Cart = () => {
   const { userLogin } = useSelector((state) => state.userReducers);
   const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch();
-  let [quanlity, setQuanlity] = useState(1);
-
-  const buttonUp = () => {
-    setQuanlity((quanlity += 1));
-  };
-
-  const buttonDown = () => {
-    if (quanlity == 1) {
-      setQuanlity(1);
-    } else {
-      setQuanlity((quanlity -= 1));
-    }
-  };
 
   const submitOrder = {
     orderDetail: arrProduct.slice(1).map((item, index) => {
@@ -83,7 +70,7 @@ const Cart = () => {
                         <button
                           type="button"
                           id="decrement-button"
-                          onClick={buttonUp}
+                          onClick={() => dispatch(upNumber(item.product.id))}
                           data-input-counter-decrement="quantity-input"
                           className="bg-primary border-0 py-1 px-2"
                         >
@@ -105,7 +92,7 @@ const Cart = () => {
                         <button
                           type="button"
                           id="increment-button"
-                          onClick={buttonDown}
+                          onClick={() => dispatch(downNumber(item.product.id))}
                           data-input-counter-increment="quantity-input"
                           className="bg-primary border-0 py-1 px-2"
                         >
