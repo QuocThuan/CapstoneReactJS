@@ -71,7 +71,7 @@ const ProductDetail = () => {
                       checked
                     />
                     <label
-                      className="py-2 px-3 bg-secondary fw-bold d-inline-block me-2"
+                      className="py-2 px-3 bg-secondary fw-bold d-inline-block me-2 mb-2"
                       for={`option${index}`}
                     >
                       {item}
