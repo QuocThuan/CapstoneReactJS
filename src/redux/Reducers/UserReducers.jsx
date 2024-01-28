@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TOKEN, USER_LOGIN } from "../../services/config";
+import { TOKEN, USER_LOGIN, https } from "../../services/config";
 
 //xử lý load giá trị ban đầu cho state từ localstorage
 let userLoginDefault = {
@@ -24,6 +24,7 @@ const initialState = {
   arrProduct: [],
   userRegister: userRegisterDefault,
   productFavourite: [],
+  userProfile: {}
 };
 const UserReducers = createSlice({
   name: "UserReducers",
@@ -51,6 +52,12 @@ const UserReducers = createSlice({
       console.log(action.payload);
       state.productFavourite = action.payload;
     },
+    getProfileAction: (state, action) => {
+      state.userProfile = action.payload
+    },
+    updateProfileAction: (state, action) => {
+      state.userProfile = action.payload
+    }
   },
 });
 
@@ -61,6 +68,8 @@ export const {
   setArrayProductAction,
   registerAction,
   setProductFavoriteAction,
+  getProfileAction,
+  updateProfileAction,
 } = UserReducers.actions;
 
 export default UserReducers.reducer;
@@ -191,3 +200,36 @@ export const getProductFavouriteApiAction = (userLogin) => {
     }
   };
 };
+
+export const getProfileApiAction = () => {
+  return async (dispatch) => {
+    try {
+      const res = await https.post('/api/Users/getProfile');
+      const action = getProfileAction(res.data.content);
+      dispatch(action);
+    } catch (error) {
+      // Handle any error 
+      console.error("Error fetching user profile:", error);
+    }
+  };
+};
+
+
+export const updateProfileApiAction = (updatedProfile) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios({
+        url: "https://shop.cyberlearn.vn/api/Users/updateProfile",
+        method: "POST",
+        data: updatedProfile,
+      });
+
+      const action = updateProfileAction(res.data.content);
+      dispatch(action);
+    } catch (error) {
+      // Handle any error if needed
+      console.error("Error updating user profile:", error);
+    }
+  };
+};
+
