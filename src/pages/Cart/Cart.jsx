@@ -72,7 +72,7 @@ const Cart = () => {
                           id="decrement-button"
                           onClick={() => dispatch(upNumber(item.product.id))}
                           data-input-counter-decrement="quantity-input"
-                          className="bg-primary border-0 py-1 px-2"
+                          className="bg-primary border-0 py-1 px-2 d-block d-lg-inline-block"
                         >
                           <i
                             class="fa-solid fa-plus text-white"
@@ -84,7 +84,7 @@ const Cart = () => {
                           id="quantity-input"
                           data-input-counter
                           aria-describedby="helper-text-explanation"
-                          className="border-0 text-center text-black fs-6"
+                          className="border-0 text-center text-black fs-6 d-block d-lg-inline-block"
                           style={{ width: "20%" }}
                           placeholder={item.numberBuy}
                           required
@@ -94,7 +94,7 @@ const Cart = () => {
                           id="increment-button"
                           onClick={() => dispatch(downNumber(item.product.id))}
                           data-input-counter-increment="quantity-input"
-                          className="bg-primary border-0 py-1 px-2"
+                          className="bg-primary border-0 py-1 px-2 d-block d-lg-inline-block"
                         >
                           <i
                             class="fa-solid fa-minus text-white"
@@ -106,12 +106,12 @@ const Cart = () => {
                   </td>
                   <td>{total}</td>
                   <td>
-                    <button className="py-1 px-3 bg-primary border-0 text-white">
+                    <button className="py-1 px-3 bg-primary border-0 text-white mb-2">
                       Edit
                     </button>
                     <button
                       onClick={() => dispatch(deleteId(item.product.id))}
-                      className="ms-3 py-1 px-3 bg-danger border-0 text-white"
+                      className="ms-3 py-1 px-3 bg-danger border-0 text-white mb-2"
                     >
                       Delete
                     </button>
@@ -125,7 +125,7 @@ const Cart = () => {
           <button
             type="button"
             onClick={() => submit(submitOrder)}
-            class="btn bg-warning border-0 me-5"
+            class="btn bg-warning border-0 me-5 mb-4"
           >
             Submit Order
           </button>

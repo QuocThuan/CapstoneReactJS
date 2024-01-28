@@ -7,7 +7,7 @@ const Footer = () => {
       <MDBFooter bgColor="light" className="text-center text-lg-left">
         <MDBContainer className="p-4">
           <MDBRow>
-            <MDBCol lg="4" md="6" className="mb-4 mb-md-0 text-start">
+            <MDBCol lg="4" md="12" className="mb-4 mb-md-2 text-start">
               <h5 className="text-uppercase">GET HELP</h5>
 
               <ul className="list-unstyled mb-0 ">
@@ -34,7 +34,7 @@ const Footer = () => {
               </ul>
             </MDBCol>
 
-            <MDBCol lg="4" md="6" className="mb-4 mb-md-0 text-start">
+            <MDBCol lg="4" md="12" className="mb-4 mb-md-2 text-start">
               <h5 className="text-uppercase">SUPPORT</h5>
 
               <ul className="list-unstyled">
@@ -61,7 +61,7 @@ const Footer = () => {
               </ul>
             </MDBCol>
 
-            <MDBCol lg="4" md="6" className="mb-4 mb-md-0 text-start">
+            <MDBCol lg="4" md="12" className="mb-4 mb-md-2 text-start">
               <h5 className="text-uppercase">REGISTER</h5>
 
               <ul className="list-unstyled mb-0">

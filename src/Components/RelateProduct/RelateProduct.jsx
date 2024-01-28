@@ -28,7 +28,7 @@ const RelateProduct = () => {
         <div className="row">
           {productRelate.map((item, index) => {
             return (
-              <div className="col-4">
+              <div className="col-6 col-lg-4 mt-lg-4">
                 <div class="card ">
                   <div className="d-flex justify-content-center">
                     <img
