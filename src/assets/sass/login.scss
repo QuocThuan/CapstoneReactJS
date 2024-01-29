@@ -1,7 +1,8 @@
 @import 'index.scss';
-.page-login{
-    
-    .row{
+
+.page-login {
+
+    .row {
         //background-color: #aeaeae;
         margin: auto;
         width: 80%;
@@ -10,26 +11,42 @@
         overflow: hidden;
         background-color: #fbfbfb;
         color: black;
-        .col-4{
-            
+
+        .col-4 {
+            @media screen and (max-width: 1168px) {
+                width: 0;
+            }
         }
-        .col-8{
+
+        .col-8 {
             width: 60%;
             margin: auto;
-            .form-login{
-                
-                h3{
-                    font-size: 35px;
-                    // padding-top: 20px;
 
+            .form-login {
+
+                @media screen and (max-width: 1168px) {
+
+                    padding: 30px 0;
+                    font-size: 15px;
                 }
-                .form-group{
-                    p{
-                        margin-bottom: 10px;
 
-                       
+                h3 {
+                    font-size: 35px;
+
+                    // padding-top: 20px;
+                    @media screen and (max-width: 1168px) {
+
+                        font-size: 30px;
                     }
-                    input{
+                }
+
+                .form-group {
+
+                    p {
+                        margin-bottom: 10px;
+                    }
+
+                    input {
                         margin-bottom: 10px;
                         border: none;
                         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -37,45 +54,54 @@
                         height: 54px;
                         background: #fff;
                     }
-                    button{
+
+                    button {
                         color: white;
                         border-radius: 4px;
                         height: 54px;
                         background: #9fa6b2;
                         font-size: 16px;
-                        &:hover{
+
+                        &:hover {
                             background: #fff;
                             color: black;
                             transition: all 0.5s;
                             border-color: #9fa6b2;
                         }
-                    } 
-                    button.kep-login-facebook{
+                    }
+
+                    button.kep-login-facebook {
                         border: none;
                         background: #fbfbfb;
                         color: #3a71ca;
                         padding-left: 5px;
                     }
-                    
+
                 }
-                .password-eye{
+
+                .password-eye {
                     position: relative;
-                    #password{
-                       
-                    }
-                    .eye-icon{
+
+                    #password {}
+
+                    .eye-icon {
                         position: absolute;
                         top: 75%;
                         right: 10px;
                         transform: translateY(-50%);
                         cursor: pointer;
+
+
                     }
                 }
-                .login-facebook{
+
+                .login-facebook {
                     padding-top: 10px;
-                    a{
+
+                    a {
                         color: #4f4f4f;
-                        span{
+
+                        span {
                             color: #3a71ca;
                             display: inline-flex;
                             align-items: center;
@@ -83,21 +109,39 @@
                             cursor: pointer;
                             border: none;
                             background-color: #fff;
-                            &:hover{
+
+                            &:hover {
                                 text-decoration: underline;
                             }
-                           
-                            
+
+                            button {
+                                @media screen and (max-width: 1168px) {
+
+                                    font-size: 15px;
+                                    padding-top: 0;
+                                }
+                            }
                         }
                     }
                 }
-                .register-account{
+
+                .register-account {
                     color: #9fa6b2;
                     padding-top: 20px;
-                    a{
+
+                    a {
                         color: red;
-                        &:hover{
+
+                        &:hover {
                             text-decoration: underline;
+                        }
+
+                        @media screen and (max-width: 773px) {
+                            display: block;
+                        }
+
+                        @media screen and (max-width: 580px) {
+                            display: inline;
                         }
                     }
                 }
