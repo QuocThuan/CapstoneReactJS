@@ -2,18 +2,22 @@ import axios from "axios";
 import { useFormik } from "formik";
 import React, { useEffect, useState } from "react";
 import { NavLink, useSearchParams } from "react-router-dom";
-import { orderBy } from "lodash"; 
+import { orderBy } from "lodash";
+import { useSelector } from "react-redux";
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [arrProduct, setArrProduct] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
+  const { productFavourite, userLogin } = useSelector(
+    (state) => state.userReducers
+  );
 
   const key = searchParams.get("keyword");
 
   const formSearch = useFormik({
     initialValues: {
-      keyword: key || "", 
+      keyword: key || "",
     },
     onSubmit: ({ keyword }) => {
       setSearchParams({
@@ -81,29 +85,52 @@ const Search = () => {
           </div>
         </div>
         <div className="row">
-        {arrProduct.map((prod) => {
-  return (
-    <div className="col-md-4 mt-4" key={prod.id}>
-      <NavLink
-        style={{ textDecoration: "none" }}
-        to={`/detail/${prod.id}`}
-        className="card"
-      >
-        <img src={prod.image} alt="..." />
-        <div className="card-body">
-          <h5>{prod.name}</h5>
-
-          <NavLink className="btn btn-dark" to={`/detail/${prod.id}`}>
-            Buy now
-          </NavLink>
-          <NavLink className="btn btn-primary mx-3">
-            {prod.price}$
-          </NavLink>
-        </div>
-      </NavLink>
-    </div>
-  );
-})}
+          {arrProduct?.map((prod) => {
+            const isFavorite = productFavourite?.includes(prod.id);
+            return (
+              <div
+                className="col-lg-4 col-md-6 col-sm-12 product-detail my-3"
+                key={prod.id}
+              >
+                <NavLink
+                  style={{ textDecoration: "none" }}
+                  to={`/${prod.id}`}
+                  className="card"
+                >
+                  <img src={prod.image} alt="..." />
+                  <div className="card-body">
+                    <div class="item-title">
+                      <h5>{prod.name}</h5>
+                      <p class="mb-2">
+                        {prod.description.slice(0, 46) + "..."}
+                      </p>
+                    </div>
+                    <div class="item-star text-warning mb-3">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                    <div class="item-info d-flex justify-content-evenly">
+                      <NavLink
+                        className="btn btn-dark btn-buy"
+                        to={`/${prod.id}`}
+                      >
+                        Buy now
+                      </NavLink>
+                      <NavLink
+                        className="btn btn-dark  btn-price"
+                        to={`/${prod.id}`}
+                      >
+                        {prod.price}$
+                      </NavLink>
+                    </div>
+                  </div>
+                </NavLink>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -111,7 +138,3 @@ const Search = () => {
 };
 
 export default Search;
-
-
-
-
