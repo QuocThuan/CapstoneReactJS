@@ -1,0 +1,190 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.product-carousel {
+  background: linear-gradient(to right, #dadada, #f3f3f3);
+}
+.product-carousel .carousel-indicators {
+  display: none;
+}
+.product-carousel .carousel-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 500px;
+  margin: 0 auto;
+  width: 80%;
+}
+.product-carousel .image-container {
+  flex: 6;
+  overflow: hidden;
+}
+.product-carousel img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.product-carousel .product-info {
+  flex: 4;
+  padding-left: 50px;
+  background-color: transparent;
+}
+.product-carousel h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.product-carousel p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.product-carousel .buy-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3566b6;
+  border-radius: 5px;
+  color: #fff;
+  border: 1px solid #3566b6;
+  cursor: pointer;
+}
+.product-carousel .buy-button:hover {
+  background-color: #fff;
+  color: #000;
+  transition: all 0.5s;
+}
+@media screen and (max-width: 500px) {
+  .product-carousel .buy-button {
+    font-size: 12px;
+  }
+}
+
+.home-product {
+  margin: 0 auto;
+  width: 90%;
+}
+@media screen and (max-width: 767px) {
+  .home-product .row {
+    display: block;
+    width: 70%;
+    margin: auto;
+  }
+}
+.home-product .row .product-detail {
+  padding: 20px;
+  position: relative;
+}
+.home-product .row .product-detail .heart-icon {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  font-size: 25px;
+  z-index: 1;
+}
+.home-product .row .product-detail .card {
+  background: #f7f7f7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.home-product .row .product-detail .card img {
+  padding: 30px 30px 0px;
+}
+@media screen and (max-width: 767px) {
+  .home-product .row .product-detail .card img {
+    width: 80%;
+    margin: auto;
+  }
+}
+.home-product .row .product-detail .card .card-body {
+  background: #fff;
+}
+.home-product .row .product-detail .card .card-body .item-title {
+  color: #4f4f4f;
+}
+@media screen and (max-width: 767px) {
+  .home-product .row .product-detail .card .card-body .item-title h5 {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .home-product .row .product-detail .card .card-body .item-title p {
+    font-size: 14px;
+  }
+}
+.home-product .row .product-detail .card .card-body .item-star i {
+  font-size: 16px;
+  padding-right: 2px;
+}
+.home-product .row .product-detail .card .card-body .item-info .btn-price {
+  padding: 12px 40px;
+  border: 1px solid #2e2929;
+}
+@media screen and (max-width: 1200px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-price {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-price {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-price {
+    font-size: 13px;
+    padding: 10px 30px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-price {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+}
+.home-product .row .product-detail .card .card-body .item-info .btn-buy {
+  background-color: #3566b6;
+  color: white;
+  border: 1px solid #3566b6;
+}
+@media screen and (max-width: 1200px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-buy {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-buy {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-buy {
+    font-size: 13px;
+    padding: 10px 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .home-product .row .product-detail .card .card-body .item-info .btn-buy {
+    font-size: 12px;
+    padding: 10px 10px;
+  }
+}
+.home-product .row .product-detail .card .card-body .item-info a {
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 12px 30px;
+}
+.home-product .row .product-detail .card .card-body .item-info a:hover {
+  color: black;
+  background: #f7f7f7;
+  transition: all 0.5s;
+}
+
+.navbar-toggler-icon {
+  color: #000;
+}/*# sourceMappingURL=home.css.map */

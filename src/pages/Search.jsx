@@ -97,7 +97,7 @@ const Search = () => {
             Buy now
           </NavLink>
           <NavLink className="btn btn-primary mx-3">
-            {prod.price}
+            {prod.price}$
           </NavLink>
         </div>
       </NavLink>

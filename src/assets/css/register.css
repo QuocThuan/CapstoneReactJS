@@ -1,0 +1,165 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.page-register .row {
+  margin: auto;
+  width: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fbfbfb;
+  color: black;
+}
+@media screen and (max-width: 1400px) {
+  .page-register .row .col-4 {
+    width: 0;
+  }
+}
+.page-register .row .col-8 {
+  width: 60%;
+  margin: auto;
+}
+@media screen and (max-width: 1400px) {
+  .page-register .row .col-8 {
+    width: 65%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .page-register .row .col-8 {
+    width: 70%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .page-register .row .col-8 .form-register {
+    padding: 30px 0;
+  }
+}
+@media screen and (max-width: 688px) {
+  .page-register .row .col-8 .form-register {
+    font-size: 15px;
+  }
+}
+.page-register .row .col-8 .form-register h3 {
+  font-size: 35px;
+  padding-bottom: 20px;
+}
+@media screen and (max-width: 688px) {
+  .page-register .row .col-8 .form-register h3 {
+    font-size: 30px;
+  }
+}
+.page-register .row .col-8 .form-register .form-content {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1210px) {
+  .page-register .row .col-8 .form-register .form-content {
+    display: block;
+  }
+}
+.page-register .row .col-8 .form-register .form-content .form-left p {
+  margin-bottom: 5px;
+}
+.page-register .row .col-8 .form-register .form-content .form-left .form-group {
+  width: 320px;
+}
+.page-register .row .col-8 .form-register .form-content .form-left .form-group input {
+  margin-bottom: 10px;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  height: 45px;
+  background: #fff;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+@media screen and (max-width: 1210px) {
+  .page-register .row .col-8 .form-register .form-content .form-left .form-group {
+    width: 100%;
+  }
+}
+.page-register .row .col-8 .form-register .form-content .form-left .password-eye {
+  position: relative;
+}
+.page-register .row .col-8 .form-register .form-content .form-left .password-eye .eye-icon {
+  position: absolute;
+  top: 75%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.page-register .row .col-8 .form-register .form-content .form-right p {
+  margin-bottom: 5px;
+}
+.page-register .row .col-8 .form-register .form-content .form-right .form-group {
+  width: 320px;
+}
+.page-register .row .col-8 .form-register .form-content .form-right .form-group input {
+  margin-bottom: 10px;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  height: 45px;
+  background: #fff;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+@media screen and (max-width: 1210px) {
+  .page-register .row .col-8 .form-register .form-content .form-right .form-group {
+    width: 100%;
+  }
+}
+.page-register .row .col-8 .form-register .form-content .form-right .gender {
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-register .row .col-8 .form-register .form-content .form-right .gender .check-input-gender {
+  box-shadow: none;
+  width: 25px;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+@media screen and (max-width: 500px) {
+  .page-register .row .col-8 .form-register .form-content .form-right .gender {
+    font-size: 15px;
+  }
+}
+.page-register .row .col-8 .form-register .sub-res button {
+  color: white;
+  border-radius: 4px;
+  height: 54px;
+  background: #9fa6b2;
+  font-size: 16px;
+}
+.page-register .row .col-8 .form-register .sub-res button:hover {
+  background: #fff;
+  color: black;
+  transition: all 0.5s;
+  border-color: #9fa6b2;
+}
+.page-register .row .col-8 .form-register .login-account {
+  color: #9fa6b2;
+  padding-top: 20px;
+}
+.page-register .row .col-8 .form-register .login-account a {
+  color: red;
+}
+.page-register .row .col-8 .form-register .login-account a:hover {
+  text-decoration: underline;
+}
+@media screen and (max-width: 500px) {
+  .page-register .row .col-8 .form-register .login-account a {
+    display: block;
+  }
+}/*# sourceMappingURL=register.css.map */
