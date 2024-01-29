@@ -1,14 +1,14 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutApiAction } from "../../redux/Reducers/UserReducers";
-
+import { message } from "antd";
 
 const Header = () => {
   const { number } = useSelector((state) => state.CartSlice);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const { userLogin } = useSelector((state) => state.userReducers);
-  console.log(userLogin);
 
   const dispatch = useDispatch();
   const logoutUser = (userLogin) => {
@@ -74,7 +74,11 @@ const Header = () => {
                 type="text"
                 placeholder="Search"
               />
-              <NavLink to="search" className="btn btn-dark my-2 my-sm-0" type="submit">
+              <NavLink
+                to="search"
+                className="btn btn-dark my-2 my-sm-0"
+                type="submit"
+              >
                 Search
               </NavLink>
 
@@ -128,16 +132,34 @@ const Header = () => {
                   </div>
                 </li>
 
-                <li className="nav-item my-2">
-                  <NavLink to={userLogin.email ? "cart" : "login"}>
-                    <i
-                      className="fa-solid fa-cart-shopping fa-xl"
-                      style={{ color: "#fff" }}
+                {userLogin.email ? (
+                  <li className="nav-item my-2">
+                    <NavLink to="cart">
+                      <i
+                        className="fa-solid fa-cart-shopping fa-xl"
+                        style={{ color: "#fff" }}
+                      >
+                        <span className="fs-4 ms-2">({number})</span>
+                      </i>
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li className="nav-item my-2">
+                    <NavLink
+                      to="login"
+                      onClick={() =>
+                        message.info("Bạn cần đăng nhập để vào trang này")
+                      }
                     >
-                      <span className="fs-4 ms-2">({number})</span>
-                    </i>
-                  </NavLink>
-                </li>
+                      <i
+                        className="fa-solid fa-cart-shopping fa-xl"
+                        style={{ color: "#fff" }}
+                      >
+                        <span className="fs-4 ms-2">({number})</span>
+                      </i>
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </form>
           </div>
