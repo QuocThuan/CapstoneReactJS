@@ -19,13 +19,13 @@ const Header = () => {
   return (
     <div className="header bg-secondary">
       <div className="container">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-secondary">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-secondary">
           <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
             Shoes Shop
           </NavLink>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"><i className="fa-solid fa-bars"></i></span>
     </button>
 
           <div className="collapse navbar-collapse" id="navbarNav">
