@@ -62,15 +62,16 @@ const Header = () => {
               </li>
             </ul>
 
+            <div className="d-flex flex-column flex-md-row">
             <form className="d-flex my-2 my-lg-0">
               <input
-                className="form-control me-sm-2 me-md-4"
+                className="form-control me-1"
                 type="text"
                 placeholder="Search"
               />
               <NavLink
                 to="search"
-                className="btn btn-dark my-2 my-sm-0"
+                className="btn btn-dark my-sm-0"
                 type="submit"
               >
                 Search
@@ -156,6 +157,7 @@ const Header = () => {
                 </li>
               )}
             </ul>
+            </div>
           </div>
           </div>
         </nav>
