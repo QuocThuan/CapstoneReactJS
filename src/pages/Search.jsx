@@ -13,7 +13,7 @@ const Search = () => {
 
   const formSearch = useFormik({
     initialValues: {
-      keyword: key || "", // Set the initial value of the keyword from the URL
+      keyword: key || "", 
     },
     onSubmit: ({ keyword }) => {
       setSearchParams({

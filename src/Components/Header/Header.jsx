@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutApiAction } from "../../redux/Reducers/UserReducers";
 import { message } from "antd";
+import { useFormik } from "formik";
 
 const Header = () => {
   const { number } = useSelector((state) => state.CartSlice);
@@ -15,6 +16,15 @@ const Header = () => {
     const action = logoutApiAction(userLogin);
     dispatch(action);
   };
+
+  const formSearch = useFormik({
+    initialValues: {
+      keyword: "", 
+    },
+    onSubmit: () => {
+      window.location.href = `/search?keyword=${formSearch.values.keyword}`;
+    },
+  });
 
   return (
     <div className="header bg-secondary">
@@ -43,19 +53,22 @@ const Header = () => {
             </ul>
 
             <div className="d-flex flex-column flex-md-row">
-            <form className="d-flex my-2 my-lg-0">
+            <form className="d-flex my-2 my-lg-0" onSubmit={formSearch.handleSubmit}>
               <input
                 className="form-control me-1"
                 type="text"
                 placeholder="Search"
+                id="keyword"
+              name="keyword"
+                onChange={formSearch.handleChange}
+              value={formSearch.values.keyword}
               />
-              <NavLink
-                to="search"
+              <button
                 className="btn btn-dark my-sm-0"
                 type="submit"
               >
                 Search
-              </NavLink>
+              </button>
             </form>
 
             <ul className="navbar-nav me-auto mt-2 mt-lg-0">
