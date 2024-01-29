@@ -77,7 +77,11 @@ const CartSlice = createSlice({
       );
       console.log(indexDelete);
       if (indexDelete != -1) {
-        state.arrProduct[indexDelete].numberBuy--;
+        if ((state.arrProduct[indexDelete].numberBuy = 1)) {
+          state.arrProduct[indexDelete].numberBuy = 1;
+        } else {
+          state.arrProduct[indexDelete].numberBuy--;
+        }
       }
     },
   },
