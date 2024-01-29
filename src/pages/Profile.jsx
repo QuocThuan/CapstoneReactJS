@@ -27,14 +27,6 @@ const Profile = () => {
         .string()
         .required("Email không được bỏ trống")
         .email("Email không đúng định dạng"),
-      password: yup
-        .string()
-        .required("Mật khẩu không được bỏ trống")
-        .min(8, "Mật khẩu phải tối thiểu 8 kí tự")
-        .matches(
-          /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])(?=.*[0-9]).{8,}$/,
-          "Mật khẩu tối thiểu 8 ký tự có ít nhất 1 kí tự đặc biệt, 1 chữ hoa và 1 số"
-        ),
       name: yup
         .string()
         .required("Tên không được bỏ trống")
@@ -49,11 +41,22 @@ const Profile = () => {
     }),
 
     onSubmit: async (values) => {
-      const action = updateProfileApiAction(values);
-      dispatch(action);
-      console.log('user profile',userProfile)
-      console.log('new values',values)
-    },
+      try {
+        const action = updateProfileApiAction(values);
+        await dispatch(action);
+        
+        
+        formProfile.setValues({
+          name: userProfile.name || "",
+          email: userProfile.email || "",
+          phone: userProfile.phone || "",
+          password: userProfile.password || "",
+          gender: userProfile.gender === true || false,
+        });
+      } catch (error) {
+        console.log('error', error)
+      }
+    },    
   });
 
   const getProfileApi = async () => {
@@ -64,7 +67,7 @@ const Profile = () => {
 
   useEffect(() => {
     // Fetch user profile when component mounts
-    getProfileApi()
+    getProfileApi();
   }, [dispatch]);
 
   useEffect(() => {
@@ -76,6 +79,7 @@ const Profile = () => {
       gender: userProfile.gender === true || false,
     });
   }, [userProfile, formProfile.setValues]);
+  
 
   return (
     <div className="container">
@@ -90,7 +94,7 @@ const Profile = () => {
           />
         </div>
         <div className="col-md-8">
-          <form>
+          <form onSubmit={formProfile.handleSubmit}>
             <div className="row">
               <div className="col-md-6 mb-3">
                 <label htmlFor="name" className="form-label">
@@ -101,7 +105,7 @@ const Profile = () => {
                   className="form-control"
                   id="name"
                   name="name"
-                  value={formProfile.values.name} 
+                  value={formProfile.values.name}
                   onChange={formProfile.handleChange}
                   onBlur={formProfile.handleBlur}
                 />
@@ -155,9 +159,13 @@ const Profile = () => {
                   className="form-control"
                   id="password"
                   placeholder="Enter your password"
-                  value={userProfile.password}
-                  onChange={formProfile.password}
+                  value={formProfile.values.password}
+                  onChange={formProfile.handleChange}
+                  onBlur={formProfile.handleBlur}
                 />
+                {/* <p className="text text-danger">
+                  {formProfile.errors.password && formProfile.errors.password}
+                </p> */}
               </div>
               <div
                 className="form-group gender d-flex col-md-6 mb-3"

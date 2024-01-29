@@ -56,8 +56,10 @@ const UserReducers = createSlice({
       state.userProfile = action.payload
     },
     updateProfileAction: (state, action) => {
-      state.userProfile = action.payload
+      console.log('Action payload:', action.payload);
+      state.userProfile = action.payload;
     }
+    
   },
 });
 
@@ -204,7 +206,7 @@ export const getProductFavouriteApiAction = (userLogin) => {
 export const getProfileApiAction = () => {
   return async (dispatch) => {
     try {
-      const res = await https.post('/api/Users/getProfile');
+      const res = (await https.post('/api/Users/getProfile'));
       const action = getProfileAction(res.data.content);
       dispatch(action);
     } catch (error) {
@@ -218,18 +220,12 @@ export const getProfileApiAction = () => {
 export const updateProfileApiAction = (updatedProfile) => {
   return async (dispatch) => {
     try {
-      const res = await axios({
-        url: "https://shop.cyberlearn.vn/api/Users/updateProfile",
-        method: "POST",
-        data: updatedProfile,
-      });
-
-      const action = updateProfileAction(res.data.content);
-      dispatch(action);
+      const res = await https.post('/api/Users/updateProfile', updatedProfile);
+      dispatch(updateProfileAction(res.data.content));
+      alert("Tài khoản cập nhật thành công!");
+      window.location.href = "/profile";
     } catch (error) {
-      // Handle any error if needed
       console.error("Error updating user profile:", error);
     }
   };
 };
-

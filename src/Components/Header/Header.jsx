@@ -1,17 +1,14 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutApiAction } from "../../redux/Reducers/UserReducers";
 
-
 const Header = () => {
   const { number } = useSelector((state) => state.CartSlice);
-
   const { userLogin } = useSelector((state) => state.userReducers);
-  console.log(userLogin);
 
   const dispatch = useDispatch();
-  const logoutUser = (userLogin) => {
+  const logoutUser = () => {
     const action = logoutApiAction(userLogin);
     dispatch(action);
   };
@@ -19,7 +16,7 @@ const Header = () => {
   return (
     <div className="header bg-secondary">
       <div className="container">
-        <nav className="navbar navbar-expand-sm navbar-dark bg-secondary">
+        <nav className="navbar navbar-expand-md navbar-dark bg-secondary">
           <NavLink className="navbar-brand" to="/">
             Shoes Shop
           </NavLink>
@@ -32,14 +29,19 @@ const Header = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            <span className="navbar-toggler-icon"></span>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mt-2 mt-lg-0">
               <li className="nav-item">
                 <NavLink className="nav-link" to="/" aria-current="page">
-                  Home <span className="visually-hidden">(current)</span>
+                  Home
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/search" aria-current="page">
+                  Search
                 </NavLink>
               </li>
               <li className="nav-item dropdown">
@@ -62,84 +64,66 @@ const Header = () => {
                   </a>
                 </div>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="search" aria-current="page">
-                  Search
-                </NavLink>
-              </li>
             </ul>
+
             <form className="d-flex my-2 my-lg-0">
               <input
                 className="form-control me-sm-2"
                 type="text"
                 placeholder="Search"
               />
-              <NavLink to="search" className="btn btn-dark my-2 my-sm-0" type="submit">
+              <NavLink
+                to="/search"
+                className="btn btn-dark my-2 my-sm-0"
+                type="submit"
+              >
                 Search
               </NavLink>
-
-              <ul className="navbar-nav me-auto mt-2 mt-lg-0">
-                <li className="nav-item dropdown mx-2">
-                  <NavLink
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    id="dropdownId"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    {userLogin.email !== "" ? (
-                      <NavLink className="text-light" to={"/"}>
-                        {userLogin.email}
-                      </NavLink>
-                    ) : (
-                      <NavLink className="text-light" to={"login"}>
-                        <i
-                          className="fa-regular fa-user fa-xl"
-                          style={{ color: "#fff" }}
-                        ></i>
-                      </NavLink>
-                    )}
-                  </NavLink>
-                  <div className="dropdown-menu" aria-labelledby="dropdownId">
-                    {userLogin.email === "" ? (
-                      <>
-                        <NavLink className="dropdown-item" to={"login"}>
-                          Login
-                        </NavLink>
-                        <NavLink className="dropdown-item" to={"register"}>
-                          Register
-                        </NavLink>
-                      </>
-                    ) : (
-                      <>
-                        <NavLink className="dropdown-item" to={"profile"}>
-                          My Account
-                        </NavLink>
-                        <NavLink
-                          className="dropdown-item"
-                          to={"login"}
-                          onClick={logoutUser}
-                        >
-                          Logout
-                        </NavLink>
-                      </>
-                    )}
-                  </div>
-                </li>
-
-                <li className="nav-item my-2">
-                  <NavLink to={userLogin.email ? "cart" : "login"}>
-                    <i
-                      className="fa-solid fa-cart-shopping fa-xl"
-                      style={{ color: "#fff" }}
-                    >
-                      <span className="fs-4 ms-2">({number})</span>
-                    </i>
-                  </NavLink>
-                </li>
-              </ul>
             </form>
+
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <NavLink
+                  to={userLogin.email ? "/profile" : "/login"}
+                  className="nav-link"
+                >
+                  {userLogin.email !== "" ? (
+                    <span className="text-light">{userLogin.email}</span>
+                  ) : (
+                    <i
+                      className="fa-regular fa-user fa-xl"
+                      style={{ color: "#fff" }}
+                    ></i>
+                  )}
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink
+                  to={userLogin.email ? "/cart" : "/login"}
+                  className="nav-link"
+                >
+                  <i
+                    className="fa-solid fa-cart-shopping fa-xl"
+                    style={{ color: "#fff" }}
+                  >
+                    <span className="fs-4 ms-2">({number})</span>
+                  </i>
+                </NavLink>
+              </li>
+
+              {userLogin.email !== "" && (
+                <li className="nav-item">
+                  <NavLink
+                    to="/login"
+                    className="nav-link"
+                    onClick={logoutUser}
+                  >
+                    Logout
+                  </NavLink>
+                </li>
+              )}
+            </ul>
           </div>
         </nav>
       </div>
