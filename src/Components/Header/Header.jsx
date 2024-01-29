@@ -2,9 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutApiAction } from "../../redux/Reducers/UserReducers";
+import { message } from "antd";
+
 
 const Header = () => {
   const { number } = useSelector((state) => state.CartSlice);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const { userLogin } = useSelector((state) => state.userReducers);
 
   const dispatch = useDispatch();
@@ -73,7 +77,7 @@ const Header = () => {
                 placeholder="Search"
               />
               <NavLink
-                to="/search"
+                to="search"
                 className="btn btn-dark my-2 my-sm-0"
                 type="submit"
               >
