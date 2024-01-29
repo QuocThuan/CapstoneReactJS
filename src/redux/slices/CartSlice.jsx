@@ -77,9 +77,12 @@ const CartSlice = createSlice({
       );
       console.log(indexDelete);
       if (indexDelete != -1) {
-        if ((state.arrProduct[indexDelete].numberBuy = 1)) {
+        console.log(state.arrProduct[indexDelete].numberBuy);
+        if (state.arrProduct[indexDelete].numberBuy === 1) {
+          console.log("first");
           state.arrProduct[indexDelete].numberBuy = 1;
         } else {
+          console.log("hi");
           state.arrProduct[indexDelete].numberBuy--;
         }
       }
