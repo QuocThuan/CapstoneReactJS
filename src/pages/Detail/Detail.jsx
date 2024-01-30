@@ -158,7 +158,7 @@ const Detail = () => {
             {productRelate.map((item, index) => {
               return (
                 <div className="col-6 col-lg-4 mt-lg-4">
-                  <div class="card ">
+                  <div onClick={() => handleButtonClick(item.id)} class="card ">
                     <div className="d-flex justify-content-center">
                       <img
                         src={item.image}
@@ -179,6 +179,7 @@ const Detail = () => {
                       </NavLink>
                       <a
                         to="#"
+                        onClick={() => handleButtonClick(item.id)}
                         className="btn bg-light w-50 fw-semibold fs-6 py-3"
                       >
                         {item.price}$
