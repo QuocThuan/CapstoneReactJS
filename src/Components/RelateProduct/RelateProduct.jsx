@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getByIdPageDetail } from "./../../services/detail";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const RelateProduct = () => {
   const [productRelate, setProductRelate] = useState([]);
@@ -41,10 +41,10 @@ const RelateProduct = () => {
                   <div class="card-body">
                     <h5 class="card-title">{item.name}</h5>
                     <p class="card-text text-truncate">{item.description}</p>
-                    <a href="#" class="btn btn-primary w-50 py-3">
+                    <a to="#" class="btn btn-primary w-50 py-3">
                       Buy Now
                     </a>
-                    <a href="#" class="btn bg-light w-50 fw-semibold fs-6 py-3">
+                    <a to="#" class="btn bg-light w-50 fw-semibold fs-6 py-3">
                       {item.price}$
                     </a>
                   </div>

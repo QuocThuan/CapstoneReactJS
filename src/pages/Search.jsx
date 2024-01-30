@@ -114,7 +114,7 @@ const Search = () => {
                     </div>
                     <div class="item-info d-flex justify-content-evenly">
                       <NavLink
-                        className="btn btn-dark btn-buy"
+                        className="btn btn-primary btn-buy"
                         to={`/${prod.id}`}
                       >
                         Buy now
